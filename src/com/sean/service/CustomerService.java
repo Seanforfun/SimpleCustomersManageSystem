@@ -17,4 +17,17 @@ public class CustomerService {
 		return ret;
 	}
 
+	public void deleteCustomer(String id) throws MySqlException {
+		dao.deleteCustomerbyId(id);
+	}
+
+	public Customers findById(String id) throws MySqlException {
+		Customers c = dao.findById(id);
+		return c;
+	}
+
+	public void modifyCustomerInfo(Customers c) throws MySqlException {
+		dao.modifyCustomerInfo(c);
+	}
+
 }

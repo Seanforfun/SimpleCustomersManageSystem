@@ -9,4 +9,34 @@
     <servlet-name>CustomerFindallServlet</servlet-name>
     <url-pattern>/findall</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DeleteServlet</display-name>
+    <servlet-name>DeleteServlet</servlet-name>
+    <servlet-class>com.sean.web.DeleteServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteServlet</servlet-name>
+    <url-pattern>/deleteCustomer</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>FindByIdServlet</display-name>
+    <servlet-name>FindByIdServlet</servlet-name>
+    <servlet-class>com.sean.web.FindByIdServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FindByIdServlet</servlet-name>
+    <url-pattern>/findbyid</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ModifyCustomerServlet</display-name>
+    <servlet-name>ModifyCustomerServlet</servlet-name>
+    <servlet-class>com.sean.web.ModifyCustomerServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ModifyCustomerServlet</servlet-name>
+    <url-pattern>/modify</url-pattern>
+  </servlet-mapping>
 </web-app>

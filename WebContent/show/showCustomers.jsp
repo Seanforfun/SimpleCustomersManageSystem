@@ -42,7 +42,8 @@
 					<td>${c.type }</td>
 					<td>${c.description }</td>
 					<td>
-						<a>modify</a>&nbsp;&nbsp;<a>delete</a>
+						<a href="${pageContext.request.contextPath }/findbyid?id=${c.id }">modify</a>&nbsp;&nbsp;
+						<a href="${pageContext.request.contextPath }/deleteCustomer?id=${c.id}">delete</a>
 					</td>
 				</tr>
 			</c:forEach>
