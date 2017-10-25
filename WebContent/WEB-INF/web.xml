@@ -59,4 +59,14 @@
     <servlet-name>DeleteSelectCustomer</servlet-name>
     <url-pattern>/delete</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SearchCustomerServlet</display-name>
+    <servlet-name>SearchCustomerServlet</servlet-name>
+    <servlet-class>com.sean.web.SearchCustomerServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SearchCustomerServlet</servlet-name>
+    <url-pattern>/search</url-pattern>
+  </servlet-mapping>
 </web-app>

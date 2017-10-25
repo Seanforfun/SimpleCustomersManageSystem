@@ -9,9 +9,21 @@
 </head>
 <body>
 	<c:if test="${empty customers }">
-		No customer service
+		No customer found.
 	</c:if>
 	<c:if test="${not empty customers }">
+		<form action="${pageContext.request.contextPath }/search">
+			<div>
+				<select name="select">
+					<option">Search Options</option>
+					<option value="cellphone">Search by cellphone</option>
+					<option value="name">Search by name</option>
+					<option value="type">Search by type</option>
+				</select> 
+				<input type="text" name="msg">
+				<input type="submit" value="search">
+			</div>
+		</form>
 		<table border="1">
 			<tr>
 				<td>checkbox<input type="checkbox" id="main" onclick="change()">
@@ -28,10 +40,11 @@
 				<td>Operation</td>
 			</tr>
 
-			<form action="${pageContext.request.contextPath }/delete" method="post" id="f">
+			<form action="${pageContext.request.contextPath }/delete"
+				method="post" id="f">
 				<c:forEach items="${customers}" var="c">
 					<tr>
-						<td><input type="checkbox" value="${c.id }"name="ck"></td>
+						<td><input type="checkbox" value="${c.id }" name="ck"></td>
 						<td>${c.id }</td>
 						<td>${c.name }</td>
 						<td>${c.gender }</td>

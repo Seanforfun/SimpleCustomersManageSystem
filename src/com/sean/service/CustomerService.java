@@ -1,6 +1,7 @@
 package com.sean.service;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.sean.dao.CustomerDao;
@@ -36,6 +37,12 @@ public class CustomerService {
 
 	public void deleteSelectedCustomer(String[] id) throws MySqlException {
 		dao.deleteSelectedCustomers(id);
+	}
+
+	public ArrayList<Customers> findSpecificCustomer(String msg, String searchOption) throws MySqlException {
+		ArrayList<Customers> customers = new ArrayList<>();
+		customers = (ArrayList<Customers>) dao.findSpecificCustomer(msg, searchOption);
+		return customers;
 	}
 
 }

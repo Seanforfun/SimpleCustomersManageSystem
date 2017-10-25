@@ -1,6 +1,7 @@
 package com.sean.dao;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -89,6 +90,18 @@ public class CustomerDao {
 		} catch (SQLException e) {
 			throw new MySqlException("Delete seleted customer exception. Please Check");
 		}
+	}
+
+	public List<Customers> findSpecificCustomer(String msg, String searchOption) throws MySqlException {
+		QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());
+		String sql = "select * from customer where "+searchOption+" like ?";
+		List<Customers> customers = null;
+		try {
+			customers = runner.query(sql, new BeanListHandler<Customers>(Customers.class) , "%"+msg+"%");
+		} catch (SQLException e) {
+			throw new MySqlException("Find Specific Customer Exception, pLease check.");
+		}
+		return customers;
 	}
 
 }
