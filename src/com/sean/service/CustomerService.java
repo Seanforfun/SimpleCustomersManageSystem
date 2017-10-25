@@ -30,4 +30,12 @@ public class CustomerService {
 		dao.modifyCustomerInfo(c);
 	}
 
+	public void addCustomer(Customers c) throws MySqlException {
+		dao.addCustomer(c);
+	}
+
+	public void deleteSelectedCustomer(String[] id) throws MySqlException {
+		dao.deleteSelectedCustomers(id);
+	}
+
 }

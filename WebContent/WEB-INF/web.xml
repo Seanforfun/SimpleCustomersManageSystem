@@ -39,4 +39,24 @@
     <servlet-name>ModifyCustomerServlet</servlet-name>
     <url-pattern>/modify</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AddCustomer</display-name>
+    <servlet-name>AddCustomer</servlet-name>
+    <servlet-class>com.sean.web.AddCustomer</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddCustomer</servlet-name>
+    <url-pattern>/add</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DeleteSelectCustomer</display-name>
+    <servlet-name>DeleteSelectCustomer</servlet-name>
+    <servlet-class>com.sean.web.DeleteSelectCustomer</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteSelectCustomer</servlet-name>
+    <url-pattern>/delete</url-pattern>
+  </servlet-mapping>
 </web-app>

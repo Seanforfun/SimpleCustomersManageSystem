@@ -9,6 +9,7 @@ import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 
 import com.sean.utils.DataSourceUtils;
+import com.sean.utils.IdUtils;
 import com.sean.utils.MySqlException;
 import com.sean.vo.Customers;
 
@@ -55,10 +56,38 @@ public class CustomerDao {
 		String sql = "update customer set name=?, gender=?, birthday=?, cellphone=?, email=?, preference=?, type=?, description=? where id = ?";
 		try {
 			runner.update(sql, c.getName(), c.getGender(), c.getBirthday(),
-					c.getCellphone(), c.getEmail(), c.getPreference(), c.getType(),
-					c.getDescription(), c.getId());
+					c.getCellphone(), c.getEmail(), c.getPreference(),
+					c.getType(), c.getDescription(), c.getId());
 		} catch (SQLException e) {
 			throw new MySqlException("Update exception, Please Check.");
+		}
+	}
+
+	public void addCustomer(Customers c) throws MySqlException {
+		QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());
+		String sql = "insert into customer values(?,?,?,?,?,?,?,?,?)";
+		try {
+			runner.update(sql, IdUtils.getUUID(), c.getName(), c.getGender(),
+					c.getBirthday(), c.getCellphone(), c.getEmail(),
+					c.getPreference(), c.getType(), c.getDescription());
+		} catch (SQLException e) {
+			throw new MySqlException("Add Exception, please check.");
+		}
+	}
+
+	public void deleteSelectedCustomers(String[] id) throws MySqlException {
+		QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());
+		String sql = "delete from customer where id = ?";
+		Object[][] sql1 = new Object[id.length][1];
+
+		for (int i = 0; i < id.length; i++) {
+			sql1[i][0] = id[i];
+		}
+
+		try {
+			runner.batch(sql, sql1);
+		} catch (SQLException e) {
+			throw new MySqlException("Delete seleted customer exception. Please Check");
 		}
 	}
 
