@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -7,8 +7,10 @@
 <title>Login Success</title>
 </head>
 <body>
-	<a href="${pageContext.request.contextPath }/findall">
-		Show all customers information
-	</a>
+	<a href="${pageContext.request.contextPath }/findall"> Show all
+		customers information </a>
+	<br>
+	<a href="${pageContext.request.contextPath }/findallpage"> Show all
+		customers information in defferent pages </a>
 </body>
 </html>

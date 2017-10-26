@@ -5,9 +5,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.sql.DataSource;
+
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 import com.sean.utils.DataSourceUtils;
 import com.sean.utils.IdUtils;
@@ -88,20 +91,48 @@ public class CustomerDao {
 		try {
 			runner.batch(sql, sql1);
 		} catch (SQLException e) {
-			throw new MySqlException("Delete seleted customer exception. Please Check");
+			throw new MySqlException(
+					"Delete seleted customer exception. Please Check");
 		}
 	}
 
 	public List<Customers> findSpecificCustomer(String msg, String searchOption) throws MySqlException {
 		QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());
-		String sql = "select * from customer where "+searchOption+" like ?";
+		String sql = "select * from customer where " + searchOption + " like ?";
 		List<Customers> customers = null;
 		try {
-			customers = runner.query(sql, new BeanListHandler<Customers>(Customers.class) , "%"+msg+"%");
+			customers = runner.query(sql, new BeanListHandler<Customers>(
+					Customers.class), "%" + msg + "%");
 		} catch (SQLException e) {
-			throw new MySqlException("Find Specific Customer Exception, pLease check.");
+			throw new MySqlException(
+					"Find Specific Customer Exception, pLease check.");
 		}
 		return customers;
+	}
+
+	public List<Customers> findByPage(int pageNum, int numberPerPage) throws  MySqlException {
+		QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());
+		String sql = "select * from customer limit ?,?";
+		List<Customers> customers = null;
+		try {
+			customers = runner.query(sql, new BeanListHandler<Customers>(Customers.class),
+					(pageNum - 1) * numberPerPage, numberPerPage);
+		} catch (SQLException e) {
+			throw new MySqlException("Find by Page Exception, Please check.");
+		}
+		return customers;
+	}
+
+	public int findCustomerNum() throws MySqlException {
+		String sql = "select count(*) from customer";
+		QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());
+		long num = 0;
+		try {
+			num = (long) runner.query(sql, new ScalarHandler());
+		} catch (SQLException e) {
+			throw new MySqlException("findCustomerNum exception, Please check");
+		}
+		return (int)num;
 	}
 
 }

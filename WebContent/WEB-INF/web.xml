@@ -69,4 +69,14 @@
     <servlet-name>SearchCustomerServlet</servlet-name>
     <url-pattern>/search</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>FindAllPageServlet</display-name>
+    <servlet-name>FindAllPageServlet</servlet-name>
+    <servlet-class>com.sean.web.FindAllPageServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FindAllPageServlet</servlet-name>
+    <url-pattern>/findallpage</url-pattern>
+  </servlet-mapping>
 </web-app>

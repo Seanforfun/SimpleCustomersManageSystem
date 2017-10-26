@@ -7,6 +7,7 @@ import java.util.List;
 import com.sean.dao.CustomerDao;
 import com.sean.utils.MySqlException;
 import com.sean.vo.Customers;
+import com.sean.vo.PageBean;
 
 public class CustomerService {
 
@@ -43,6 +44,18 @@ public class CustomerService {
 		ArrayList<Customers> customers = new ArrayList<>();
 		customers = (ArrayList<Customers>) dao.findSpecificCustomer(msg, searchOption);
 		return customers;
+	}
+
+	public PageBean findByPage(int pageNum, int numberPerPage) throws MySqlException {
+		int totalNumber = dao.findCustomerNum();
+		int totalPage = (int) Math.ceil((double)totalNumber/numberPerPage);
+		List<Customers> customers = dao.findByPage(pageNum, numberPerPage);
+		PageBean pb = new PageBean();
+		pb.setCs(customers);
+		pb.setPageNum(pageNum);
+		pb.setNumPerPage(numberPerPage);
+		pb.setTotalPage(totalPage);
+		return pb;
 	}
 
 }
